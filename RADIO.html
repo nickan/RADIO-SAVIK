@@ -136,7 +136,14 @@
             border: 1px solid rgba(0, 212, 255, 0.15);
             border-radius: 16px;
             padding: 22px;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, z-index 0s;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* При открытом списке пресетов или настроек поднимаем панель выше остальных */
+        .glass-panel.top-priority {
+            z-index: 101;
         }
 
         .glass-panel:hover {

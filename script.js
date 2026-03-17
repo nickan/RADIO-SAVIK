@@ -134,17 +134,21 @@ function buildPresetList() {
 
 function togglePresetDropdown() {
     const isOpen = presetDropdown.classList.contains('open');
+    const parentPanel = presetBtn.closest('.glass-panel');
     if (isOpen) {
         closePresetDropdown();
     } else {
         presetDropdown.classList.add('open');
         presetBtn.classList.add('active');
+        if (parentPanel) parentPanel.classList.add('top-priority');
     }
 }
 
 function closePresetDropdown() {
     presetDropdown.classList.remove('open');
     presetBtn.classList.remove('active');
+    const parentPanel = presetBtn.closest('.glass-panel');
+    if (parentPanel) parentPanel.classList.remove('top-priority');
 }
 
 presetBtn.addEventListener('click', (e) => {
