@@ -190,6 +190,163 @@
             margin-top: 6px;
         }
 
+        /* === URL input row with dropdown === */
+        .url-input-row {
+            display: flex;
+            gap: 8px;
+            align-items: stretch;
+        }
+
+        .url-input-row .neon-input {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* === Preset radio dropdown === */
+        .preset-dropdown-wrap {
+            position: relative;
+        }
+
+        .preset-btn {
+            height: 100%;
+            min-width: 46px;
+            padding: 0 12px;
+            background: rgba(15, 23, 60, 0.7);
+            border: 1px solid rgba(0, 212, 255, 0.25);
+            border-radius: 10px;
+            color: #00d4ff;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .preset-btn:hover,
+        .preset-btn.active {
+            background: rgba(0, 212, 255, 0.12);
+            border-color: #00d4ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
+            transform: scale(1.05);
+        }
+
+        .preset-btn .arrow {
+            font-size: 0.6rem;
+            margin-left: 4px;
+            transition: transform 0.3s;
+        }
+
+        .preset-btn.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        .preset-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            width: 340px;
+            max-height: 0;
+            overflow: hidden;
+            background: rgba(12, 17, 45, 0.95);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 14px;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            z-index: 100;
+            transition: max-height 0.4s ease, opacity 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            box-shadow: none;
+        }
+
+        .preset-dropdown.open {
+            max-height: 420px;
+            opacity: 1;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 212, 255, 0.08);
+        }
+
+        .preset-dropdown-inner {
+            padding: 8px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .preset-dropdown-inner::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .preset-dropdown-inner::-webkit-scrollbar-track {
+            background: rgba(10, 14, 39, 0.5);
+            border-radius: 4px;
+        }
+
+        .preset-dropdown-inner::-webkit-scrollbar-thumb {
+            background: rgba(0, 212, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        .preset-category {
+            font-family: 'Orbitron', monospace;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #5a6f8a;
+            padding: 10px 12px 4px;
+            user-select: none;
+        }
+
+        .preset-category:not(:first-child) {
+            border-top: 1px solid rgba(0, 212, 255, 0.08);
+            margin-top: 4px;
+            padding-top: 12px;
+        }
+
+        .preset-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .preset-item:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+
+        .preset-item:active {
+            transform: scale(0.98);
+        }
+
+        .preset-item .radio-icon {
+            font-size: 1.1rem;
+            min-width: 24px;
+            text-align: center;
+            filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.4));
+        }
+
+        .preset-item .radio-name {
+            flex: 1;
+            font-size: 0.85rem;
+            color: #c8d6e5;
+            font-weight: 500;
+        }
+
+        .preset-item .radio-genre {
+            font-size: 0.65rem;
+            color: #3a4a6a;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .preset-item:hover .radio-name {
+            color: #00d4ff;
+        }
+
         /* === Интервал === */
         .interval-row {
             display: flex;
@@ -645,9 +802,19 @@
         <!-- URL радио -->
         <div class="glass-panel">
             <div class="panel-label"><span class="icon">🌐</span> Радио поток</div>
-            <input type="url" id="radioUrl" class="neon-input" placeholder="http://example.com:8000/stream"
-                value="https://radiorecord.hostingradio.ru/rr_main128.mp3">
-            <div class="input-hint">Прямая ссылка на аудиопоток (ICEcast, Shoutcast и т.д.)</div>
+            <div class="url-input-row">
+                <input type="url" id="radioUrl" class="neon-input" placeholder="http://example.com:8000/stream"
+                    value="https://radiorecord.hostingradio.ru/rr_main128.mp3">
+                <div class="preset-dropdown-wrap">
+                    <button class="preset-btn" id="presetBtn" title="Выбрать радиостанцию">
+                        📻 <span class="arrow">▼</span>
+                    </button>
+                    <div class="preset-dropdown" id="presetDropdown">
+                        <div class="preset-dropdown-inner" id="presetList"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="input-hint">Прямая ссылка на аудиопоток или выберите из списка 📻</div>
         </div>
 
         <!-- Настройки (скрыто по умолчанию) -->

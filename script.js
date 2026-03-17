@@ -42,6 +42,126 @@ settingsBtn.addEventListener('click', () => {
 });
 
 // ====================================
+// 0.5 Preset радиостанции
+// ====================================
+const PRESET_STATIONS = [
+    {
+        category: '🎷 Ретро и Ностальгия',
+        stations: [
+            { name: 'Радио Мелодия (СПБ)', url: 'http://stream128.melodiafm.spb.ru:8000/melodia128', icon: '🎵', genre: 'Мелодии' },
+            { name: 'Радио Маяк', url: 'https://icecast-vgtrk.cdnvideo.ru/mayakfm_aac_64kbps', icon: '📡', genre: 'Ток-шоу' },
+            { name: 'Радио Ретро Хит', url: 'http://air.volna.top/Retro', icon: '🕺', genre: 'Ретро' },
+            { name: 'Fallout FM', url: 'http://fallout.fm:8000/falloutfm1.ogg', icon: '☢️', genre: '40-60s' },
+            { name: 'Jazz FM 89.1', url: 'http://nashe1.hostingradio.ru/jazz-128.mp3', icon: '🎷', genre: 'Джаз' },
+            { name: 'Супердискотека 90-х', url: 'https://radiorecord.hostingradio.ru/sd9096.aacp', icon: '🤘', genre: '90-е' },
+            { name: 'Рекорд 00-х', url: 'https://radiorecord.hostingradio.ru/200096.aacp', icon: '💿', genre: '00-е' },
+            { name: 'Record 80-х', url: 'https://radiorecord.hostingradio.ru/198096.aacp', icon: '📼', genre: '80-е' },
+        ]
+    },
+    {
+        category: '⚡ Radio Record (Energy)',
+        stations: [
+            { name: 'Record', url: 'https://radiorecord.hostingradio.ru/rr_main96.aacp', icon: '🎧', genre: 'Main' },
+            { name: 'Russian Mix', url: 'https://radiorecord.hostingradio.ru/rus96.aacp', icon: '🇷🇺', genre: 'Dance' },
+            { name: 'Techno', url: 'https://radiorecord.hostingradio.ru/techno96.aacp', icon: '🧱', genre: 'Techno' },
+            { name: 'Hard Bass', url: 'https://radiorecord.hostingradio.ru/hbass96.aacp', icon: '👟', genre: 'Hard' },
+            { name: 'Trancemission', url: 'https://radiorecord.hostingradio.ru/tm96.aacp', icon: '✨', genre: 'Trance' },
+            { name: 'Pirate Station', url: 'https://radiorecord.hostingradio.ru/ps96.aacp', icon: '☠️', genre: 'D&B' },
+            { name: 'Phonk', url: 'https://radiorecord.hostingradio.ru/phonk96.aacp', icon: '🏎️', genre: 'Phonk' },
+            { name: 'Rock', url: 'https://radiorecord.hostingradio.ru/rock96.aacp', icon: '🎸', genre: 'Rock' },
+        ]
+    },
+    {
+        category: '🍃 Chill & Lounge',
+        stations: [
+            { name: 'Chill-Out', url: 'https://radiorecord.hostingradio.ru/chil96.aacp', icon: '🧘', genre: 'Chill' },
+            { name: 'Chill House', url: 'https://radiorecord.hostingradio.ru/chillhouse96.aacp', icon: '🏠', genre: 'House' },
+            { name: 'Ambient', url: 'https://radiorecord.hostingradio.ru/ambient96.aacp', icon: '🌫️', genre: 'Ambient' },
+            { name: 'Lo-Fi', url: 'https://radiorecord.hostingradio.ru/lofi96.aacp', icon: '☕', genre: 'Lo-Fi' },
+            { name: 'Симфония FM', url: 'https://radiorecord.hostingradio.ru/symph96.aacp', icon: '🎻', genre: 'Classic' },
+            { name: 'Megamix', url: 'https://radiorecord.hostingradio.ru/mix96.aacp', icon: '🧪', genre: 'Mix' },
+        ]
+    },
+    {
+        category: '📻 Разное',
+        stations: [
+            { name: 'Русское Радио', url: 'https://rusradio.hostingradio.ru/rusradio128.mp3', icon: '🇷🇺', genre: 'Поп' },
+            { name: 'Вести ФМ', url: 'http://icecast.vgtrk.cdnvideo.ru/vestifm_mp3_128kbps', icon: '📰', genre: 'Новости' },
+            { name: 'Гоп FM', url: 'https://radiorecord.hostingradio.ru/gop96.aacp', icon: '🍺', genre: 'Разное' },
+            { name: 'Веснушка FM', url: 'https://radiorecord.hostingradio.ru/deti96.aacp', icon: '🎈', genre: 'Детям' },
+            { name: 'На шашлыки!', url: 'https://radiorecord.hostingradio.ru/nashashlyki96.aacp', icon: '🍖', genre: 'Вечеринка' },
+        ]
+    }
+];
+
+const presetBtn = document.getElementById('presetBtn');
+const presetDropdown = document.getElementById('presetDropdown');
+const presetList = document.getElementById('presetList');
+
+// Наполняем dropdown
+function buildPresetList() {
+    presetList.innerHTML = '';
+    PRESET_STATIONS.forEach(cat => {
+        const catDiv = document.createElement('div');
+        catDiv.className = 'preset-category';
+        catDiv.textContent = cat.category;
+        presetList.appendChild(catDiv);
+
+        cat.stations.forEach(st => {
+            const item = document.createElement('div');
+            item.className = 'preset-item';
+            item.innerHTML = `
+                <span class="radio-icon">${st.icon}</span>
+                <span class="radio-name">${st.name}</span>
+                <span class="radio-genre">${st.genre}</span>
+            `;
+            item.addEventListener('click', () => {
+                const urlInput = document.getElementById('radioUrl');
+                urlInput.value = st.url;
+                radioUrl = st.url;
+                saveSettings();
+                closePresetDropdown();
+                // Если радио уже играет — перезапускаем с новым URL
+                if (isPlaying) {
+                    stop();
+                    setTimeout(() => start(), 300);
+                }
+            });
+            presetList.appendChild(item);
+        });
+    });
+}
+
+function togglePresetDropdown() {
+    const isOpen = presetDropdown.classList.contains('open');
+    if (isOpen) {
+        closePresetDropdown();
+    } else {
+        presetDropdown.classList.add('open');
+        presetBtn.classList.add('active');
+    }
+}
+
+function closePresetDropdown() {
+    presetDropdown.classList.remove('open');
+    presetBtn.classList.remove('active');
+}
+
+presetBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    togglePresetDropdown();
+});
+
+// Закрытие по клику снаружи
+document.addEventListener('click', (e) => {
+    if (!presetDropdown.contains(e.target) && e.target !== presetBtn) {
+        closePresetDropdown();
+    }
+});
+
+buildPresetList();
+
+// ====================================
 // 1. localStorage
 // ====================================
 function loadSettings() {
