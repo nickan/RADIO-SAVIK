@@ -46,50 +46,121 @@ settingsBtn.addEventListener('click', () => {
 // ====================================
 const PRESET_STATIONS = [
     {
-        category: '🎷 Ретро и Ностальгия',
+        category: '⭐ Основное и FM',
         stations: [
+            { name: 'Record (Main)', url: 'https://radiorecord.hostingradio.ru/rr_main96.aacp', icon: '📻', genre: 'Dance' },
             { name: 'Радио Мелодия (СПБ)', url: 'http://stream128.melodiafm.spb.ru:8000/melodia128', icon: '🎵', genre: 'Мелодии' },
             { name: 'Радио Маяк', url: 'https://icecast-vgtrk.cdnvideo.ru/mayakfm_aac_64kbps', icon: '📡', genre: 'Ток-шоу' },
-            { name: 'Радио Ретро Хит', url: 'http://air.volna.top/Retro', icon: '🕺', genre: 'Ретро' },
-            { name: 'Fallout FM', url: 'http://fallout.fm:8000/falloutfm1.ogg', icon: '☢️', genre: '40-60s' },
-            { name: 'Jazz FM 89.1', url: 'http://nashe1.hostingradio.ru/jazz-128.mp3', icon: '🎷', genre: 'Джаз' },
-            { name: 'Супердискотека 90-х', url: 'https://radiorecord.hostingradio.ru/sd9096.aacp', icon: '🤘', genre: '90-е' },
-            { name: 'Рекорд 00-х', url: 'https://radiorecord.hostingradio.ru/200096.aacp', icon: '💿', genre: '00-е' },
-            { name: 'Record 80-х', url: 'https://radiorecord.hostingradio.ru/198096.aacp', icon: '📼', genre: '80-е' },
-        ]
-    },
-    {
-        category: '⚡ Radio Record (Energy)',
-        stations: [
-            { name: 'Record', url: 'https://radiorecord.hostingradio.ru/rr_main96.aacp', icon: '🎧', genre: 'Main' },
-            { name: 'Russian Mix', url: 'https://radiorecord.hostingradio.ru/rus96.aacp', icon: '🇷🇺', genre: 'Dance' },
-            { name: 'Techno', url: 'https://radiorecord.hostingradio.ru/techno96.aacp', icon: '🧱', genre: 'Techno' },
-            { name: 'Hard Bass', url: 'https://radiorecord.hostingradio.ru/hbass96.aacp', icon: '👟', genre: 'Hard' },
-            { name: 'Trancemission', url: 'https://radiorecord.hostingradio.ru/tm96.aacp', icon: '✨', genre: 'Trance' },
-            { name: 'Pirate Station', url: 'https://radiorecord.hostingradio.ru/ps96.aacp', icon: '☠️', genre: 'D&B' },
-            { name: 'Phonk', url: 'https://radiorecord.hostingradio.ru/phonk96.aacp', icon: '🏎️', genre: 'Phonk' },
-            { name: 'Rock', url: 'https://radiorecord.hostingradio.ru/rock96.aacp', icon: '🎸', genre: 'Rock' },
-        ]
-    },
-    {
-        category: '🍃 Chill & Lounge',
-        stations: [
-            { name: 'Chill-Out', url: 'https://radiorecord.hostingradio.ru/chil96.aacp', icon: '🧘', genre: 'Chill' },
-            { name: 'Chill House', url: 'https://radiorecord.hostingradio.ru/chillhouse96.aacp', icon: '🏠', genre: 'House' },
-            { name: 'Ambient', url: 'https://radiorecord.hostingradio.ru/ambient96.aacp', icon: '🌫️', genre: 'Ambient' },
-            { name: 'Lo-Fi', url: 'https://radiorecord.hostingradio.ru/lofi96.aacp', icon: '☕', genre: 'Lo-Fi' },
-            { name: 'Симфония FM', url: 'https://radiorecord.hostingradio.ru/symph96.aacp', icon: '🎻', genre: 'Classic' },
-            { name: 'Megamix', url: 'https://radiorecord.hostingradio.ru/mix96.aacp', icon: '🧪', genre: 'Mix' },
-        ]
-    },
-    {
-        category: '📻 Разное',
-        stations: [
             { name: 'Русское Радио', url: 'https://rusradio.hostingradio.ru/rusradio128.mp3', icon: '🇷🇺', genre: 'Поп' },
             { name: 'Вести ФМ', url: 'http://icecast.vgtrk.cdnvideo.ru/vestifm_mp3_128kbps', icon: '📰', genre: 'Новости' },
-            { name: 'Гоп FM', url: 'https://radiorecord.hostingradio.ru/gop96.aacp', icon: '🍺', genre: 'Разное' },
-            { name: 'Веснушка FM', url: 'https://radiorecord.hostingradio.ru/deti96.aacp', icon: '🎈', genre: 'Детям' },
-            { name: 'На шашлыки!', url: 'https://radiorecord.hostingradio.ru/nashashlyki96.aacp', icon: '🍖', genre: 'Вечеринка' },
+            { name: 'Jazz FM 89.1', url: 'http://nashe1.hostingradio.ru/jazz-128.mp3', icon: '🎷', genre: 'Джаз' },
+            { name: 'Радио Ретро Хит', url: 'http://air.volna.top/Retro', icon: '💃', genre: 'Ретро' },
+            { name: 'Хайп ФМ', url: 'http://air.volna.top/HypeFM', icon: '🔥', genre: 'Хиты' },
+            { name: 'Discover Trance', url: 'http://paris.discovertrance.com:8006/;stream.nsv', icon: '🎧', genre: 'Trance' },
+        ]
+    },
+    {
+        category: '🔥 Record: Dance',
+        stations: [
+            { name: 'Russian Mix', url: 'https://radiorecord.hostingradio.ru/rus96.aacp', icon: '🇷🇺', genre: 'Dance' },
+            { name: 'Summer Dance', url: 'https://radiorecord.hostingradio.ru/summerparty96.aacp', icon: '☀️', genre: 'House' },
+            { name: 'Megamix', url: 'https://radiorecord.hostingradio.ru/mix96.aacp', icon: '🧪', genre: 'Mix' },
+            { name: 'Big Hits', url: 'https://radiorecord.hostingradio.ru/bighits96.aacp', icon: '💎', genre: 'Top' },
+            { name: 'Party 24/7', url: 'https://radiorecord.hostingradio.ru/party96.aacp', icon: '🥂', genre: 'Active' },
+            { name: 'TOP 100 EDM', url: 'https://radiorecord.hostingradio.ru/top100edm96.aacp', icon: '⭐', genre: 'EDM' },
+            { name: 'Live DJ-sets', url: 'https://radiorecord.hostingradio.ru/livedjsets96.aacp', icon: '🎧', genre: 'Live' },
+            { name: 'На Хайпе', url: 'https://radiorecord.hostingradio.ru/hype96.aacp', icon: '⚡', genre: 'Hype' },
+            { name: 'Remix', url: 'https://radiorecord.hostingradio.ru/rmx96.aacp', icon: '🔄', genre: 'Remix' },
+            { name: 'Workout', url: 'https://radiorecord.hostingradio.ru/workout96.aacp', icon: '🏃', genre: 'Sport' },
+        ]
+    },
+    {
+        category: '🧱 Record: Techno & House',
+        stations: [
+            { name: 'Techno', url: 'https://radiorecord.hostingradio.ru/techno96.aacp', icon: '🧱', genre: 'Techno' },
+            { name: 'Tech House', url: 'https://radiorecord.hostingradio.ru/techouse96.aacp', icon: '🏘️', genre: 'Tech' },
+            { name: 'House Hits', url: 'https://radiorecord.hostingradio.ru/househits96.aacp', icon: '🏠', genre: 'House' },
+            { name: 'Minimal/Tech', url: 'https://radiorecord.hostingradio.ru/mini96.aacp', icon: '💿', genre: 'Minimal' },
+            { name: 'VIP House', url: 'https://radiorecord.hostingradio.ru/vip96.aacp', icon: '💎', genre: 'VIP' },
+            { name: 'Deep', url: 'https://radiorecord.hostingradio.ru/deep96.aacp', icon: '🌊', genre: 'Deep' },
+            { name: 'Chill House', url: 'https://radiorecord.hostingradio.ru/chillhouse96.aacp', icon: '🏡', genre: 'Chill' },
+            { name: 'Future House', url: 'https://radiorecord.hostingradio.ru/fut96.aacp', icon: '🛸', genre: 'Future' },
+            { name: 'Organic', url: 'https://radiorecord.hostingradio.ru/organic96.aacp', icon: '🍃', genre: 'Organic' },
+            { name: 'House Classics', url: 'https://radiorecord.hostingradio.ru/houseclss96.aacp', icon: '🏛️', genre: 'Classic' },
+        ]
+    },
+    {
+        category: '👟 Record: Bass & Hard',
+        stations: [
+            { name: 'Hard Bass', url: 'https://radiorecord.hostingradio.ru/hbass96.aacp', icon: '👟', genre: 'Hard' },
+            { name: 'Pirate Station', url: 'https://radiorecord.hostingradio.ru/ps96.aacp', icon: '🏴‍☠️', genre: 'D&B' },
+            { name: 'Neurofunk', url: 'https://radiorecord.hostingradio.ru/neurofunk96.aacp', icon: '🧠', genre: 'Neuro' },
+            { name: 'Phonk', url: 'https://radiorecord.hostingradio.ru/phonk96.aacp', icon: '🏎️', genre: 'Phonk' },
+            { name: 'Dubstep', url: 'https://radiorecord.hostingradio.ru/dub96.aacp', icon: '🕸️', genre: 'Dubstep' },
+            { name: 'Jungle', url: 'https://radiorecord.hostingradio.ru/jungle96.aacp', icon: '🌿', genre: 'Jungle' },
+            { name: 'Breaks', url: 'https://radiorecord.hostingradio.ru/brks96.aacp', icon: '🥁', genre: 'Breaks' },
+            { name: 'Liquid Funk', url: 'https://radiorecord.hostingradio.ru/liquidfunk96.aacp', icon: '💧', genre: 'Liquid' },
+            { name: 'Dancecore', url: 'https://radiorecord.hostingradio.ru/dc96.aacp', icon: '⚡', genre: 'Core' },
+            { name: 'Hardstyle', url: 'https://radiorecord.hostingradio.ru/teo96.aacp', icon: '🔥', genre: 'Hard' },
+            { name: 'Darkside', url: 'https://radiorecord.hostingradio.ru/darkside96.aacp', icon: '🌑', genre: 'Dark' },
+        ]
+    },
+    {
+        category: '📼 Record: Ретро & Золото',
+        stations: [
+            { name: 'Супердискотека 90-х', url: 'https://radiorecord.hostingradio.ru/sd9096.aacp', icon: '🤘', genre: '90s' },
+            { name: 'Рекорд 00-х', url: 'https://radiorecord.hostingradio.ru/200096.aacp', icon: '💿', genre: '00s' },
+            { name: 'Record 80-х', url: 'https://radiorecord.hostingradio.ru/198096.aacp', icon: '📼', genre: '80s' },
+            { name: '70-s Dance', url: 'https://radiorecord.hostingradio.ru/197096.aacp', icon: '🕺', genre: '70s' },
+            { name: '60-s Dance', url: 'https://radiorecord.hostingradio.ru/cadillac96.aacp', icon: '🎩', genre: '60s' },
+            { name: 'Record Gold', url: 'https://radiorecord.hostingradio.ru/gold96.aacp', icon: '👑', genre: 'Gold' },
+            { name: 'Russian Gold', url: 'https://radiorecord.hostingradio.ru/russiangold96.aacp', icon: '🥇', genre: 'Gold' },
+            { name: 'Нафталин FM', url: 'https://radiorecord.hostingradio.ru/naft96.aacp', icon: '🕰️', genre: 'Old' },
+            { name: 'Руки Вверх!', url: 'https://radiorecord.hostingradio.ru/rv96.aacp', icon: '🙌', genre: 'Pop' },
+            { name: 'Eurodance', url: 'https://radiorecord.hostingradio.ru/eurodance96.aacp', icon: '💃', genre: 'Dance' },
+        ]
+    },
+    {
+        category: '🧘 Record: Chill & Atmosphere',
+        stations: [
+            { name: 'Chill-Out', url: 'https://radiorecord.hostingradio.ru/chil96.aacp', icon: '🧘', genre: 'Chill' },
+            { name: 'Ambient', url: 'https://radiorecord.hostingradio.ru/ambient96.aacp', icon: '🌫️', genre: 'Ambient' },
+            { name: 'Lo-Fi', url: 'https://radiorecord.hostingradio.ru/lofi96.aacp', icon: '☕', genre: 'Lo-Fi' },
+            { name: 'Симфония FM', url: 'https://radiorecord.hostingradio.ru/symph96.aacp', icon: '🎻', genre: 'Classique' },
+            { name: 'Медляк FM', url: 'https://radiorecord.hostingradio.ru/mdl96.aacp', icon: '🕯️', genre: 'Slow' },
+            { name: 'Dream Pop', url: 'https://radiorecord.hostingradio.ru/dreampop96.aacp', icon: '☁️', genre: 'Dream' },
+            { name: 'Dream Dance', url: 'https://radiorecord.hostingradio.ru/dream96.aacp', icon: '🌌', genre: 'Dream' },
+            { name: 'Synthwave', url: 'https://radiorecord.hostingradio.ru/synth96.aacp', icon: '🌆', genre: 'Synth' },
+            { name: 'Christmas Chill', url: 'https://radiorecord.hostingradio.ru/christmaschill96.aacp', icon: '❄️', genre: 'Chill' },
+        ]
+    },
+    {
+        category: '🌍 Record: Styles',
+        stations: [
+            { name: 'Trancemission', url: 'https://radiorecord.hostingradio.ru/tm96.aacp', icon: '✨', genre: 'Trance' },
+            { name: 'Armin van Buuren', url: 'https://radiorecord.hostingradio.ru/armin96.aacp', icon: '🎧', genre: 'Trance' },
+            { name: 'Tiesto', url: 'https://radiorecord.hostingradio.ru/tiesto96.aacp', icon: '🎧', genre: 'Dance' },
+            { name: 'David Guetta', url: 'https://radiorecord.hostingradio.ru/guetta96.aacp', icon: '🎧', genre: 'Dance' },
+            { name: 'GOA/PSY', url: 'https://radiorecord.hostingradio.ru/goa96.aacp', icon: '🕉️', genre: 'Psy' },
+            { name: 'Trap', url: 'https://radiorecord.hostingradio.ru/trap96.aacp', icon: '⚠️', genre: 'Trap' },
+            { name: 'Rap Hits', url: 'https://radiorecord.hostingradio.ru/rap96.aacp', icon: '🎤', genre: 'Rap' },
+            { name: 'Rock', url: 'https://radiorecord.hostingradio.ru/rock96.aacp', icon: '🎸', genre: 'Rock' },
+            { name: 'Moombahton', url: 'https://radiorecord.hostingradio.ru/mmbt96.aacp', icon: '🌴', genre: 'Latin' },
+            { name: 'Latina Dance', url: 'https://radiorecord.hostingradio.ru/latina96.aacp', icon: '💃', genre: 'Latin' },
+            { name: 'Midtempo', url: 'https://radiorecord.hostingradio.ru/mt96.aacp', icon: '⏳', genre: 'Mid' },
+            { name: 'Future Bass', url: 'https://radiorecord.hostingradio.ru/fbass96.aacp', icon: '🧊', genre: 'Bass' },
+            { name: 'UK Garage', url: 'https://radiorecord.hostingradio.ru/ukgarage96.aacp', icon: '🇬🇧', genre: 'Garage' },
+        ]
+    },
+    {
+        category: '🎈 Разное и Детское',
+        stations: [
+            { name: 'Веснушка FM', url: 'https://radiorecord.hostingradio.ru/deti96.aacp', icon: '🎈', genre: 'Kids' },
+            { name: 'Гоп FM', url: 'https://radiorecord.hostingradio.ru/gop96.aacp', icon: '🍺', genre: 'Gop' },
+            { name: 'На шашлыки!', url: 'https://radiorecord.hostingradio.ru/nashashlyki96.aacp', icon: '🍖', genre: 'Bbq' },
+            { name: 'Гастарбайтер FM', url: 'https://radiorecord.hostingradio.ru/gast96.aacp', icon: '🛠️', genre: 'Jobs' },
+            { name: 'Русская Зима', url: 'https://radiorecord.hostingradio.ru/ruszima96.aacp', icon: '☃️', genre: 'Winter' },
+            { name: 'Маятник Фуко', url: 'https://radiorecord.hostingradio.ru/mf96.aacp', icon: '⏱️', genre: 'Rap' },
         ]
     }
 ];
